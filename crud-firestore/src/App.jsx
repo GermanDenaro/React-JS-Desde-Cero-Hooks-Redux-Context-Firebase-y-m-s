@@ -6,7 +6,7 @@ function App() {
 
   const [tareas, setTareas] = useState([]);
   const [tarea, setTarea] = useState('');
-  const [tareida, setId] = useState('');
+  const [id, setId] = useState('');
   const [modoEdicion, setModoEdicion] = useState(false);
 
   useEffect(() => {
@@ -77,6 +77,27 @@ function App() {
 
   const editar = async (e) => {
     e.preventDefault()
+    if(!tarea.trim()) {
+      console.log('vacio');
+      return
+    }
+    try {
+      const db = firebase.firestore();
+      await db.collection('tareas').doc(id).update({
+        name: tarea
+      })
+      const arrayEditado = tareas.map(item => (
+        item.id === id ? {id: item.id, fecha: item.fecha, name: tarea} : item
+      ))
+      
+      setTareas(arrayEditado)
+      setModoEdicion(false)
+      setTarea('')
+      setId('')
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

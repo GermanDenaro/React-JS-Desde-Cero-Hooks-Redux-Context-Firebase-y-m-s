@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 function App() {

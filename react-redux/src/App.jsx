@@ -1,15 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Pokemones from './components/Pokemones'
+import React from 'react';
+import Pokemones from './components/Pokemones';
 import {Provider} from 'react-redux'
 import generateStore from './redux/store'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
-  const store = generateStore();
+  const store = generateStore()
 
   return (
     <Provider store={store}>
-      <Pokemones/>
+      <div className="container mt-3">
+      <Pokemones />
+      </div>
+      
     </Provider>
   );
 }
